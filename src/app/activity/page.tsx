@@ -24,6 +24,8 @@ import { Heart, MapPin, Star } from "lucide-react";
 import { format } from "date-fns";
 import Link from "next/link";
 
+
+
 const activities = [
   {
     id:1,
@@ -79,110 +81,115 @@ export default function Page() {
   <Navbar />
 
   <div className="relative h-[400px] w-full flex justify-center items-center">
-    <Image
-      src={img4}
-      alt="Background"
-      layout="fill"
-      objectFit="cover"
-      quality={100}
-      className="absolute z-0"
-    />
+  <Image
+    src={img4}
+    alt="Background"
+    layout="fill"
+    objectFit="cover"
+    quality={100}
+    className="absolute z-0"
+  />
 
-    <div className="relative z-10 flex flex-col sm:flex-row items-center w-full max-w-4xl bg-white rounded-full shadow-md px-4 py-3 space-y-4 sm:space-y-0 sm:space-x-4">
-      <div className="flex-1">
-        <p className="text-sm text-gray-500 font-medium">Location</p>
-        <input
-          type="text"
-          placeholder="Where are you going?"
-          className="w-full border-none focus:ring-0 text-gray-800 placeholder-gray-400"
-        />
-      </div>
-
-      <div className="h-10 w-[1px] bg-gray-200 sm:block hidden" />
-
-      <div className="flex-1">
-        <p className="text-sm text-gray-500 font-medium">Pick-up</p>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="w-full text-left font-normal">
-              {pickupDate
-                ? `${format(pickupDate, "MM/dd/yyyy")} ${pickupTime || "Select Time"}`
-                : "Add date, Add time"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent align="start" className="p-0">
-            <Calendar
-              mode="single"
-              selected={pickupDate}
-              onSelect={(date) => date && setPickupDate(date)}
-              className="rounded-md"
-            />
-            <div className="p-2">
-              <label className="block text-sm text-gray-500 font-medium mb-1">Time</label>
-              <input
-                type="time"
-                value={pickupTime}
-                onChange={(e) => setPickupTime(e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-          </PopoverContent>
-        </Popover>
-      </div>
-
-      <div className="text-gray-400 font-bold sm:block hidden">→</div>
-
-      <div className="flex-1">
-        <p className="text-sm text-gray-500 font-medium">Drop-off</p>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="w-full text-left font-normal">
-              {dropoffDate
-                ? `${format(dropoffDate, "MM/dd/yyyy")} ${dropoffTime || "Select Time"}`
-                : "Add date, Add time"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent align="start" className="p-0">
-            <Calendar
-              mode="single"
-              selected={dropoffDate}
-              onSelect={(date) => date && setDropoffDate(date)}
-              className="rounded-md"
-            />
-            <div className="p-2">
-              <label className="block text-sm text-gray-500 font-medium mb-1">Time</label>
-              <input
-                type="time"
-                value={dropoffTime}
-                onChange={(e) => setDropoffTime(e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-          </PopoverContent>
-        </Popover>
-      </div>
-
-      <Button className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">
-        <span className="flex items-center gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="h-4 w-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.35-4.35"
-            />
-          </svg>
-          Search
-        </span>
-      </Button>
+  <div className="relative z-10 flex flex-col md:flex-row items-center w-full max-w-4xl bg-white rounded-xl shadow-md px-4 py-3 mt-16 space-y-4 md:space-y-0 md:space-x-4">
+    <div className="flex-1">
+      <p className="text-sm text-gray-500 font-medium">Location</p>
+      <input
+        type="text"
+        placeholder="Where are you going?"
+        className="w-full border-none focus:ring-0 text-gray-800 placeholder-gray-400"
+      />
     </div>
+
+    <div className="h-[1px] md:h-10 w-full md:w-[1px] bg-gray-200" />
+
+    <div className="flex-1">
+      <p className="text-sm text-gray-500 font-medium">Pick-up</p>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline" className="w-full text-left font-normal">
+            {pickupDate
+              ? `${format(pickupDate, "MM/dd/yyyy")} ${pickupTime || "Select Time"}`
+              : "Add date, Add time"}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent align="start" className="p-0">
+          <Calendar
+            mode="single"
+            selected={pickupDate}
+            onSelect={(date) => date && setPickupDate(date)}
+            className="rounded-md"
+          />
+          <div className="p-2">
+            <label className="block text-sm text-gray-500 font-medium mb-1">Time</label>
+            <input
+              type="time"
+              value={pickupTime}
+              onChange={(e) => setPickupTime(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-black focus:border-black"
+            />
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
+
+    <div className="text-gray-400 font-bold">→</div>
+
+    <div className="flex-1">
+      <p className="text-sm text-gray-500 font-medium">Drop-off</p>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline" className="w-full text-left font-normal">
+            {dropoffDate
+              ? `${format(dropoffDate, "MM/dd/yyyy")} ${dropoffTime || "Select Time"}`
+              : "Add date, Add time"}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent align="start" className="p-0">
+         
+
+
+
+
+<Calendar
+            mode="single"
+            selected={dropoffDate}
+            onSelect={(date: Date | undefined) => setDropoffDate(date)}
+            className="rounded-md"
+          />
+          <div className="p-2">
+            <label className="block text-sm text-gray-500 font-medium mb-1">Time</label>
+            <input
+              type="time"
+              value={dropoffTime}
+              onChange={(e) => setDropoffTime(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-black focus:border-black"
+            />
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
+
+    <Button className="px-6 py-2 bg-black text-white rounded-full hover:bg-black mt-4 md:mt-0">
+      <span className="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="h-4 w-4"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.35-4.35"
+          />
+        </svg>
+        Search
+      </span>
+    </Button>
   </div>
+</div>
 </div>
 
 
