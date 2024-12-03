@@ -77,10 +77,9 @@ export default function Page() {
   const [dropoffTime, setDropoffTime] = useState<string>("");
   return (
     <>
-<div>
-  <Navbar />
+<Navbar/>
 
-  <div className="relative h-[400px] w-full flex justify-center items-center">
+<div className="relative h-[400px] w-full flex justify-center items-center">
   <Image
     src={img4}
     alt="Background"
@@ -106,19 +105,23 @@ export default function Page() {
       <p className="text-sm text-gray-500 font-medium">Pick-up</p>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="w-full text-left font-normal">
-            {pickupDate
-              ? `${format(pickupDate, "MM/dd/yyyy")} ${pickupTime || "Select Time"}`
-              : "Add date, Add time"}
-          </Button>
+        <Button variant="outline" className="w-full text-left font-normal">
+      {dropoffDate
+        ? `${format(dropoffDate, "MM/dd/yyyy")} ${dropoffTime || "Select Time"}`
+
+        : "Add date, Add time"}
+
+    </Button>
         </PopoverTrigger>
         <PopoverContent align="start" className="p-0">
-          <Calendar
-            mode="single"
-            selected={pickupDate}
-            onSelect={(date) => date && setPickupDate(date)}
-            className="rounded-md"
-          />
+        <Calendar
+  mode="single"
+  selected={pickupDate}
+  onSelect={(date: Date | undefined) => {
+    if (date) setPickupDate(date); // Update the state with the selected date
+  }}
+  className="rounded-md"
+/>
           <div className="p-2">
             <label className="block text-sm text-gray-500 font-medium mb-1">Time</label>
             <input
@@ -145,25 +148,22 @@ export default function Page() {
           </Button>
         </PopoverTrigger>
         <PopoverContent align="start" className="p-0">
-         
-
-
-
-
-<Calendar
+        <Calendar
             mode="single"
             selected={dropoffDate}
             onSelect={(date: Date | undefined) => setDropoffDate(date)}
             className="rounded-md"
           />
+
+
           <div className="p-2">
             <label className="block text-sm text-gray-500 font-medium mb-1">Time</label>
             <input
-              type="time"
-              value={dropoffTime}
-              onChange={(e) => setDropoffTime(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-black focus:border-black"
-            />
+          type="time"
+          value={dropoffTime}
+          onChange={(e) => setDropoffTime(e.target.value)}
+          className="w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-black focus:border-black"
+        />
           </div>
         </PopoverContent>
       </Popover>
@@ -190,7 +190,7 @@ export default function Page() {
     </Button>
   </div>
 </div>
-</div>
+
 
 
 
